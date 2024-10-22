@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Shop Dashboard</title>
+    <link rel="stylesheet" href="dash.css">
+    <script src="dash.js" defer></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="gngLogo.jpg" alt="GNG Barber Shop Logo">
+        </div>
+        <h2>GNG Barber Shop</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle">Transactions</a>
+              <ul class="submenu">
+                  <li><a href="#">Sales</a></li>
+                  <li><a href="#">Expenses</a></li>
+              </ul>
+          </li>
+        </ul>
+        <a href="#" class="logout">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+        </div>
+
+        <div class="dashboard">
+            <div class="card sales">
+                <h3>Total Sales</h3>
+                <p id="totalSales">---</p>
+            </div>
+
+            <div class="card expenses">
+                <h3>Total Expenses</h3>
+                <p id="totalExpenses">---</p>
+            </div>
+
+            <div class="card customers">
+                <h3>Total Customers</h3>
+                <p id="totalCustomers">---</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Revenue Status</h3>
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+</body>
+</html>
