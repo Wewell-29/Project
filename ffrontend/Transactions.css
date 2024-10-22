@@ -1,0 +1,213 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #1a1b1c;
+  height: 100vh;
+  padding: 20px;
+  color: #fff;
+  position: fixed; /* Keep it fixed on the left */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+}
+
+.sidebar .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sidebar .logo img {
+  width: 80%;
+  height: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  flex-grow: 1; /* Allow this section to grow */
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+  position: relative; /* Position for dropdown */
+}
+
+.sidebar ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  padding: 10px 15px; /* Padding for clickable area */
+  justify-content: center;
+}
+
+.sidebar ul li a:hover {
+  background-color: #757979; /* Hover effect */
+}
+
+
+
+.dropdown-menu {
+  display: none; /* Hide dropdowns initially */
+  background-color: #434445; /* Match dropdown background */
+  padding-left: 15px; /* Indentation for dropdown items */
+}
+
+.dropdown-menu.show {
+  display: block; /* Show dropdown when toggled */
+}
+
+.logout-button {
+  color: #ff1c1c; /* Logout button color */
+  display: flex; /* Flex display for icon and text */
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 80px; /* No additional margin */
+}
+
+.main-content {
+  margin-left: 250px; /* Leave space for the sidebar */
+  padding: 40px;
+  flex-grow: 1;
+}
+
+.header h1{
+  text-align: center;
+  font-weight: 500;
+}
+  -----------------------
+  .calendar {
+    display: flex;
+    justify-content: flex-start; 
+    padding: 20px;
+    position: relative;
+    
+}
+
+.calendar-input {
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 5px;
+    border: 1px solid #050505;
+    width: 200px;
+    background-color: transparent;
+    margin-top: 6px  ;
+    color: #000000;
+    text-transform: uppercase;
+
+    margin-top: 20px;
+}
+.new{
+    margin-top: 30px;
+    
+}
+.form-control{
+    text-transform: uppercase;
+    font-weight: 400;
+    
+}
+.form-label{
+    margin-left: 5px;
+   
+}
+.po{
+    color: #000000;
+}
+
+
+
+
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    min-width: 1000px;
+    border-collapse: collapse;
+   
+}
+thead th{
+    position: sticky;
+    top: 0;
+    background-color: rgb(0, 0, 0);
+    color: rgb(254, 254, 254);
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+th, td{
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+    background-color: rgb(250, 249, 249);
+    color: #ffffff;
+   
+    font-weight: 1000   ;
+    font-size: large;
+    
+}
+
+tbody td{
+    font-size: 20px;
+    color: #000000;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+    
+    
+
+
+
+
+
+body {
+    background-color: #f8f9fa; 
+  }
+
+  .modal-header h5{
+    text-align: center;
+  }
+
+  .modal-content {
+    background-color: #ffffff; 
+    border-radius: 10px;
+  }
+
+  .modal-title {
+    color: #ffffff; 
+    border: #000000 solid 8px;
+    border-radius: 25px;
+    background-color: #000000;
+    width: 120px;
+    text-align: center;
+  }
+
+  .modal-footer {
+    border-top: 2px solid #007bff; 
+  }
+
+.btn-dark{
+    font-size: 20px;
+}
+
+
+.overlay-report-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Adjust width as needed */
+  padding: 20px; /* Add padding for better spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  border-radius: 8px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}

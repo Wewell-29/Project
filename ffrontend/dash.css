@@ -1,131 +1,126 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 150px;
-    background-color: #1a1b1c;
-    height: 100vh;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sidebar .logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar .logo img {
-    width: 80%; /* Adjust the size to fit well */
-    height: auto;
-  }
-  
-  .sidebar h2 {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 20px;
-    width: 100%;
-  }
-
-  .sidebar ul li a:hover {
-   background-color: #3c3d3e; /* Change background on hover */
-
-}
-  
-  .sidebar ul li {
-    margin: 25px 0;
-    padding: 10px;
-  }
-  
-  .sidebar ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    text-align: center;
-  }
-
-  .submenu {
-    display: none; /* Hide submenu by default */
-    list-style: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 5px 0 0 10px; /* Indent submenu items */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
 }
 
-.sidebar ul li:hover .submenu {
-    display: block; /* Show submenu on hover */
+.sidebar {
+  width: 200px;
+  background-color: #1a1b1c;
+  height: 100vh;
+  padding: 20px;
+  color: #fff;
+  position: fixed; /* Keep it fixed on the left */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
 }
 
-  
-  .sidebar .logout {
-    margin-top: auto;
-    color: #e74c3c;
-    text-align: center;
-    margin-bottom: 100px;
-  }
-  
-  .main-content {
-    flex-grow: 1;
-    padding: 40px;
-  }
-  
-  .header {
-    margin-bottom: 40px;
-  }
+.sidebar .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  .header h1{
-    text-align: center;
-  }
-  
-  .dashboard {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .card {
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    margin-right: 20px;
-  }
+.sidebar .logo img {
+  width: 80%;
+  height: auto;
+}
 
-  .card.sales {
-    background-color: #c9e035; /* Green for Sales */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  flex-grow: 1; /* Allow this section to grow */
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+  position: relative; /* Position for dropdown */
+}
+
+.sidebar ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  padding: 10px 15px; /* Padding for clickable area */
+  justify-content: center;
+}
+
+.sidebar ul li a:hover {
+  background-color: #484a4b; /* Hover effect */
+}
+
+
+.dropdown-menu {
+  display: none; /* Hide dropdowns initially */
+  background-color: #2c2d2e; /* Match dropdown background */
+  padding-left: 15px; /* Indentation for dropdown items */
+}
+
+.dropdown-menu.show {
+  display: block; /* Show dropdown when toggled */
+}
+
+.logout-button {
+  color: #e74c3c; /* Logout button color */
+  display: flex; /* Flex display for icon and text */
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 80px; /* No additional margin */
+}
+
+.main-content {
+  margin-left: 250px; /* Leave space for the sidebar */
+  padding: 40px;
+  flex-grow: 1;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  text-align: center;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  margin-right: 20px;
+}
+
+.card.sales {
+  background-color: #d5df9153; /* Green for Sales */
 }
 
 .card.expenses {
-    background-color: #e54433; /* Red for Expenses */
+  background-color: #e5453353; /* Red for Expenses */
 }
 
 .card.customers {
-    background-color: #0e94ed; /* Blue for Customers */
+  background-color: #0e94ed5b; /* Blue for Customers */
 }
-  
-  .card h3 {
-    margin-bottom: 10px;
-  }
-  
-  .chart-container {
-    margin-top: 40px;
-  }
-  
-  canvas {
-    width: 100%;
-    max-width: 600px;
-    height: 400px;
-  }
-  
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.chart-container {
+  margin-top: 40px;
+}
+
+canvas {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+}
