@@ -113,6 +113,8 @@ body {
 
 .card h3 {
   margin-bottom: 10px;
+  justify-content: center;
+  
 }
 
 .chart-container {
@@ -125,3 +127,9 @@ canvas {
   height: 400px;
 }
 
+.chart-container canvas {
+  width: 100% !important; /* Ensures it scales to fit the container */
+  max-width: 900px;       /* Sets a maximum width for larger displays */
+  height: 500px !important; /* Custom height */
+  margin: 0 auto;         /* Centers the canvas horizontally */
+}

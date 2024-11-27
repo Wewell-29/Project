@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
         },
         options: {
             responsive: true,
-            scales: {
+            scales: { 
                 y: {
                     beginAtZero: true
                 }
