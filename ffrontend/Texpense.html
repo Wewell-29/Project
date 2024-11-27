@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Transactions.css">
+    <title>Sales</title>
+</head>
+<body>
+    <div class="container-fluid d-flex p-0">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="gngLogo.jpg" alt="GNG Barber Shop Logo">
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="dash.html">Dashboard</a></li>
+                <li class="nav-item">
+                    <a href="#" class="dropdown-toggle" id="transactionsDropdown" aria-expanded="false">Transactions</a>
+                    <ul class="dropdown-menu" id="transactionsMenu">
+                        <li><a class="dropdown-item" href="Tsales.html">Sales</a></li>
+                        <li><a class="dropdown-item active" href="Texpense.html">Expenses</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="login.html" class="logout-button btn">Log Out</a>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Expenses</h1>
+            </div>
+
+            <div class="container mt-5">
+                <!-- Calendar Section -->
+                <div class="calendar mb-4">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <label for="calendar" class="form-label">Select Date:</label>
+                            <input type="date" id="calendar" class="form-control" style="width: auto;" oninput="checkInput()" required>
+                        </div>
+                        <div class="new col-auto text-end">
+                            <button type="button" class="new btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <i class="fa fa-plus-circle"></i> Add New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- The Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="fw-bold" style="font-size: larger;">Add New</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="orderNo" class="form-label">Order No</label>
+                                        <input type="text" class="form-control" id="orderNo" placeholder="Enter Order Number">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="item" class="form-label">Item</label>
+                                        <input type="text" class="form-control" id="item" placeholder="Enter Item">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="quantity" class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" id="quantity" placeholder="Enter Quantity">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date" class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="date">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="price" placeholder="Enter Price">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-dark">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Section -->
+                <div class="table_section">
+                    <table class="table table-striped table-bordered text-center align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Order No.</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Scissors</td>
+                                <td>10</td>
+                                <td>01-22-30</td>
+                                <td>₱150.00</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Powder</td>
+                                <td>5</td>
+                                <td>01-22-30</td>
+                                <td>₱250.00</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Tissue</td>
+                                <td>10</td>
+                                <td>01-22-30</td>
+                                <td>₱100.00</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Button to Show Report Card -->
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-dark" id="showReportCard">
+                        <i class="fa fa-chart-bar"></i> Show Expense Report
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Overlay Report Card -->
+            <div class="overlay-report-card card bg-dark text-white" id="expenseReportCard" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Expense Summary</h5>
+                    <p class="card-text">Total Expenses: ₱500.00</p>
+                    <p class="card-text">Breakdown:</p>
+                    <ul class="list-unstyled">
+                        <li>Scissors: ₱150.00</li>
+                        <li>Powder: ₱250.00</li>
+                        <li>Tissue: ₱100.00</li>
+                    </ul>
+                    <button class="btn btn-light" id="closeReportCard">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Sales.js"></script>
+    <script>
+        // JavaScript for dropdown functionality
+        document.getElementById('transactionsDropdown').addEventListener('click', function () {
+            var menu = document.getElementById('transactionsMenu');
+            menu.classList.toggle('show');
+        });
+
+        // JavaScript for showing and closing the report card
+        document.getElementById('showReportCard').addEventListener('click', function () {
+            document.getElementById('expenseReportCard').style.display = 'block';
+        });
+
+        document.getElementById('closeReportCard').addEventListener('click', function () {
+            document.getElementById('expenseReportCard').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
