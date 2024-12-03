@@ -54,6 +54,26 @@
 
         <div class="chart-container">
             <h3 class="text-center">Revenue Status</h3>
+            <div class="text-end mb-3">
+                <label for="monthInput" class="form-label">Filter by Month:</label>
+                <select id="monthInput" class="form-select">
+                    <option value="" selected>All</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <button class="btn btn-primary mt-2" id="filterButton">Filter</button>
+                <button class="btn btn-secondary mt-2" id="sortButton">Sort by Month</button>
+            </div>
             <canvas id="revenueChart"></canvas>
         </div>
     </div>
@@ -66,12 +86,17 @@
         });
 
         // Chart.js configuration and initialization
-        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        const originalLabels = ['January', 'March', 'February', 'April', 'June', 'May', 'July'];
+        const originalData = [65, 80, 59, 81, 55, 56, 40];
+
+        let labels = [...originalLabels];
+        let chartData = [...originalData];
+
         const data = {
             labels: labels,
             datasets: [{
                 label: 'Monthly Revenue',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: chartData,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
@@ -87,6 +112,51 @@
             document.getElementById('revenueChart'),
             config
         );
+
+        // Sorting function for months
+        document.getElementById('sortButton').addEventListener('click', function () {
+            const monthOrder = [
+                'January', 'February', 'March', 'April', 'May', 'June', 'July', 
+                'August', 'September', 'October', 'November', 'December'
+            ];
+            
+            const combinedData = labels.map((label, index) => ({
+                month: label,
+                value: chartData[index],
+            }));
+
+            combinedData.sort((a, b) => 
+                monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month)
+            );
+
+            data.labels = combinedData.map(item => item.month);
+            data.datasets[0].data = combinedData.map(item => item.value);
+
+            revenueChart.update(); // Refresh the chart
+        });
+
+        // Filtering function for months
+        document.getElementById('filterButton').addEventListener('click', function () {
+            const selectedMonth = document.getElementById('monthInput').value;
+            
+            if (selectedMonth) {
+                const filteredData = originalLabels
+                    .map((label, index) => ({
+                        month: label,
+                        value: originalData[index],
+                    }))
+                    .filter(item => item.month === selectedMonth);
+
+                data.labels = filteredData.map(item => item.month);
+                data.datasets[0].data = filteredData.map(item => item.value);
+            } else {
+                // Reset to original data if "All" is selected
+                data.labels = [...originalLabels];
+                data.datasets[0].data = [...originalData];
+            }
+
+            revenueChart.update(); // Refresh the chart
+        });
     </script>
 </body>
 </html>
