@@ -33,18 +33,19 @@
             </div>
 
             <div class="container mt-5">
-                <!-- Calendar Section -->
-                <div class="calendar mb-4">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <label for="calendar" class="form-label">Select Date:</label>
-                            <input type="date" id="calendar" class="form-control" style="width: auto;" oninput="checkInput()" required>
-                        </div>
-                        <div class="new col-auto text-end">
-                            <button type="button" class="new btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <i class="fa fa-plus-circle"></i> Add New
-                            </button>
-                        </div>
+                <!-- Date Filter Section -->
+                <div class="row">
+                    <div class="col">
+                        <input type="date" id="dateFilter" class="form-control" placeholder="Filter by date" style="max-width: 200px; margin-top: 20px;">
+                    </div>
+                </div>
+
+                <!-- Button to Add New Expense -->
+                <div class="row mb-4">
+                    <div class="col-auto text-end">
+                        <button type="button" class="new btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                            <i class="fa fa-plus-circle"></i> Add New
+                        </button>
                     </div>
                 </div>
                 
@@ -59,7 +60,7 @@
                                 <form id="expenseForm">
                                     <div class="mb-3">
                                         <label for="orderNo" class="form-label">Order No</label>
-                                        <input type="text" class="form-control" id="orderNo" placeholder="Enter Order Number" readonly>
+                                        <input type="text" class="form-control" id="orderNo" placeholder="Automatically Generated" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label for="item" class="form-label">Item</label>
@@ -101,27 +102,6 @@
                         </thead>
                         <tbody id="expenseTableBody">
                             <!-- Sample rows will be added dynamically here -->
-                            <tr>
-                                <td>1</td>
-                                <td>Shampoo</td>
-                                <td>3</td>
-                                <td>2024-11-01</td>
-                                <td>₱150.00</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Haircut Tools</td>
-                                <td>1</td>
-                                <td>2024-11-02</td>
-                                <td>₱350.00</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Towels</td>
-                                <td>5</td>
-                                <td>2024-11-03</td>
-                                <td>₱120.00</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -129,7 +109,7 @@
                 <!-- Button to Show Report Card -->
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-dark" id="showReportCard">
-                        <i class="fa fa-chart-bar"></i>Expense Report
+                        <i class="fa fa-chart-bar"></i> Expense Report
                     </button>
                 </div>
             </div>
@@ -150,106 +130,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Array to store expenses
-        const expenses = [
-            { orderNo: 1, item: 'Shampoo', quantity: 3, date: '2024-11-01', price: 150 },
-            { orderNo: 2, item: 'Haircut Tools', quantity: 1, date: '2024-11-02', price: 350 },
-            { orderNo: 3, item: 'Towels', quantity: 5, date: '2024-11-03', price: 120 }
-        ];
-
-        let orderNoCounter = expenses.length + 1;
-
-        // Function to update the order number automatically
-        function updateOrderNo() {
-            document.getElementById('orderNo').value = orderNoCounter++;
-        }
-
-        // Function to add a new expense to the table and report card
-        function addExpense() {
-            // Get values from the modal input fields
-            const orderNo = document.getElementById('orderNo').value;
-            const item = document.getElementById('item').value;
-            const quantity = parseInt(document.getElementById('quantity').value, 10);
-            const date = document.getElementById('date').value;
-            const price = parseFloat(document.getElementById('price').value);
-
-            // Validation
-            if (!item || isNaN(quantity) || !date || isNaN(price)) {
-                alert('Please fill in all fields correctly.');
-                return;
-            }
-
-            // Store the expense
-            expenses.push({ orderNo, item, quantity, date, price });
-
-            // Update table and report
-            updateExpenseTable();
-            updateExpenseReport();
-
-            // Clear input fields and close modal
-            document.getElementById('expenseForm').reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById('myModal'));
-            modal.hide();
-        }
-
-        // Function to update the expense table
-        function updateExpenseTable() {
-            const tableBody = document.getElementById('expenseTableBody');
-            tableBody.innerHTML = ''; // Clear the table
-
-            // Add each expense as a row
-            expenses.forEach(expense => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${expense.orderNo}</td>
-                    <td>${expense.item}</td>
-                    <td>${expense.quantity}</td>
-                    <td>${expense.date}</td>
-                    <td>₱${expense.price.toFixed(2)}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Function to update the expense report
-        function updateExpenseReport() {
-            const reportList = document.getElementById('expenseReportList');
-            reportList.innerHTML = ''; // Clear the report list
-            let total = 0;
-
-            // Add each expense to the report
-            expenses.forEach(expense => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${expense.item} - ₱${expense.price.toFixed(2)}`;
-                reportList.appendChild(listItem);
-                total += expense.price;
-            });
-
-            // Update the total expense
-            const totalText = document.querySelector('#expenseReportCard .card-text');
-            totalText.textContent = `Total Expenses: ₱${total.toFixed(2)}`;
-        }
-
-        // Show the report card overlay
-        document.getElementById('showReportCard').addEventListener('click', function () {
-            document.getElementById('expenseReportCard').style.display = 'block';
-        });
-
-        // Close the report card overlay
-        document.getElementById('closeReportCard').addEventListener('click', function () {
-            document.getElementById('expenseReportCard').style.display = 'none';
-        });
-
-        // Initialize Order Number
-        updateOrderNo();
-
-        // Save the expense when clicking the save button
-        document.getElementById('saveExpenseBtn').addEventListener('click', addExpense);
-
-        // Initialize the table with the sample data
-        updateExpenseTable();
-        updateExpenseReport();
-    </script>
+    <script src="./connectors/expenses.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 // controllers/salesController.js
 const Sale = require('../models/Sale');
 
-// Fetch all sales
+
 exports.getSales = async (req, res) => {
     try {
         const sales = await Sale.find();
@@ -11,7 +11,7 @@ exports.getSales = async (req, res) => {
     }
 };
 
-// Add a new sale
+
 exports.addSale = async (req, res) => {
     const { haircut, date, price } = req.body;
 
