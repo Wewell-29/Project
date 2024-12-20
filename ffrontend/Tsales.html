@@ -37,12 +37,12 @@
                 <div class="calendar mb-4">
                     <div class="row align-items-center">
                         <div class="col">
-                            <label for="calendar" class="form-label">Select Date:</label>
-                            <input type="date" id="calendar" class="form-control" style="width: auto;" oninput="checkInput()" required>
+                            <label for="dateFilter" class="form-label">Filter by Date:</label>
+                            <input type="date" id="dateFilter" class="form-control" style="width: auto;">
                         </div>
                         <div class="new col-auto text-end">
-                            <button type="button" class="new btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-plus-circle"></i>
-                                New Customer
+                            <button type="button" class="new btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <i class="fa fa-plus-circle"></i> New Customer
                             </button>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
 
                             <!-- Modal Body with Form -->
                             <div class="modal-body">
-                                <form>
+                                <form id="salesForm">
                                     <div class="mb-3">
                                         <label for="orderNo" class="form-label">Order No</label>
-                                        <input type="text" class="form-control" id="orderNo" placeholder="Enter Order Number" disabled>
+                                        <input type="text" class="form-control" id="orderNo" placeholder="Generated Automatically" disabled>
                                     </div>
                                     <div class="mb-3">
                                         <label for="haircut" class="form-label">Haircut</label>
@@ -100,25 +100,7 @@
                             </tr>
                         </thead>
                         <tbody id="customerTable">
-                            <!-- Existing data can be added here manually or fetched from a database -->
-                            <tr>
-                                <td>1</td>
-                                <td>Faded</td>
-                                <td>2024-11-28</td>
-                                <td>₱90.00</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Buzz Cut</td>
-                                <td>2024-11-28</td>
-                                <td>₱80.00</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Mohawk</td>
-                                <td>2024-11-28</td>
-                                <td>₱120.00</td>
-                            </tr>
+                            <!-- Dynamic Data Here -->
                         </tbody>
                     </table>
                 </div>
@@ -127,6 +109,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="tsales.js"></script>
+    <script src="../ffrontend/connectors/sales.js"></script>
 </body>
 </html>
