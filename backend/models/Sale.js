@@ -1,33 +1,49 @@
 // models/Sale.js
 const mongoose = require('mongoose');
 
-// Schema for the sales
 const saleSchema = new mongoose.Schema({
-    orderNo: { type: Number, unique: true }, // Unique auto-generated Order No
-    haircut: { type: String, required: true },
-    date: { type: Date, required: true },
-    price: { type: Number, required: true },
+    orderNo: { 
+        type: Number, 
+        unique: true 
+    },
+    haircut: { 
+        type: String, 
+        required: true 
+    },
+    date: { 
+        type: Date, 
+        required: true 
+    },
+    price: { 
+        type: Number, 
+        required: true 
+    },
 });
 
-// Counter schema for managing sequential numbers
+
 const counterSchema = new mongoose.Schema({
-    name: { type: String, required: true, unique: true },
-    seq: { type: Number, default: 1 },
+    name: { 
+        type: String, 
+        required: true, 
+        unique: true },
+    seq: { 
+        type: Number, 
+        default: 1 },
 });
 
 const Counter = mongoose.model('Counter', counterSchema);
 
-// Pre-save hook for auto-incrementing `Order No`
+
 saleSchema.pre('save', async function (next) {
     if (!this.isNew) return next();
 
     try {
         const counter = await Counter.findOneAndUpdate(
-            { name: 'saleOrder' }, // Counter name
-            { $inc: { seq: 1 } },  // Increment sequence
-            { new: true, upsert: true } // Create if not exist
+            { name: 'saleOrder' },
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true } 
         );
-        this.orderNo = counter.seq; // Assign the sequence to orderNo
+        this.orderNo = counter.seq; 
         next();
     } catch (error) {
         next(error);
