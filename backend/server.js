@@ -1,27 +1,29 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db');  // Your DB connection configuration
-const authRoutes = require('./routes/authRoutes');  // Your authentication routes
+const connectDB = require('./config/db');  // DB connection configuration
+const authRoutes = require('./routes/authRoutes');
+const salesRoutes = require('./routes/salesRoutes');  // Sales routes
 
 const app = express();
 
-// Ensure the PORT is set correctly, even if leading zeros are used
-const PORT = process.env.PORT || 70;  // Default to 70 if PORT is not found
+// Ensure the PORT is set correctly
+const PORT = process.env.PORT;
 
 // CORS configuration
 const corsOptions = {
-  origin: '*',  // Allow all origins during development (or set this to specific origin if needed)
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 // Middleware
-app.use(cors(corsOptions));  // Enable CORS with the specified options
-app.use(express.json());     // Parse JSON request bodies
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // Routes
-app.use('/api/auth', authRoutes);  // Attach authentication routes
+app.use('/api/auth', authRoutes);
+app.use('/api/sales', salesRoutes);  // Attach sales routes
 
 // Connect to DB and start server
 connectDB();
